@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name    = "fluent-plugin-flatten-types"
-  spec.version = "0.1.0"
+  spec.version = "0.1.1"
   spec.authors = ["Muhammad junaid"]
   spec.email   = ["mahammad.junaid@smallcase.com"]
 
