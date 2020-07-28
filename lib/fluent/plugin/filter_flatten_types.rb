@@ -14,29 +14,28 @@
 # limitations under the License.
 
 require "fluent/plugin/filter"
-def is_number? string
-  return string.to_i.to_s == string.to_s  ||  string.to_f.to_s == string.to_s
-end
 
-def flatten_record(record, result, prefix="")
+def flatten_record(record, result, thisKey)
   if record.is_a? Hash
-    
+    subrecord = {}
+    result.store(thisKey + '_m', subrecord)
     record.each do |key, value|
-      current_prefix = prefix + '_' + key
-      flatten_record(value, result, current_prefix  )
+      flatten_record(value, subrecord, key)
     end
   elsif record.is_a? Array
+    subrecord = {}
+    result.store(thisKey + '_a', subrecord)
     record.each_with_index do |elem, index|
-      current_prefix = prefix + '_' + index.to_s
-      flatten_record(elem, result, current_prefix )
+      flatten_record(elem, subrecord, index.to_s)
     end
+  elsif !!record == record
+    result.store(thisKey + '_b', record)
+  elsif record.is_a? String 
+    result.store(thisKey, record)
+  elsif record.is_a? Numeric
+    result.store(thisKey + '_n', record)
   else
-      if is_number?(record)
-          result.store(prefix + '_n', record)
-          result.store(prefix, "s:" + record.to_s)
-      else
-          result.store(prefix, record)
-      end
+    result.store(thisKey + '_u', record)
   end
   return result
 end
