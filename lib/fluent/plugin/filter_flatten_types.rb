@@ -14,6 +14,7 @@
 # limitations under the License.
 
 require "fluent/plugin/filter"
+require 'json'
 
 def flatten_record(record, result, thisKey)
   if record.is_a? Hash
@@ -44,6 +45,9 @@ def flatten(record)
   result = {}
   record.each do |key, value|
       flatten_record(value, result, key)
+  end
+  if record['stringify'] == true
+      result.store('source_string', record.to_json)
   end
   return result
 end
