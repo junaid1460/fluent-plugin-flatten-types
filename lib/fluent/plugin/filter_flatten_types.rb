@@ -19,20 +19,22 @@ require 'json'
 def flatten_record(record, result, thisKey)
   if record.is_a? Hash
     subrecord = {}
-    result.store(thisKey + '_m', subrecord)
+    result.store(thisKey, subrecord)
     record.each do |key, value|
       flatten_record(value, subrecord, key)
     end
   elsif record.is_a? Array
-    subrecord = {}
-    result.store(thisKey + '_a', subrecord)
+    subarray = []
+    result.store(thisKey + '_a', subarray)
     record.each_with_index do |elem, index|
-      flatten_record(elem, subrecord, index.to_s)
+      subrecord = {}
+      subarray.push(subrecord)
+      flatten_record(elem, subrecord, 'v')
     end
   elsif !!record == record
     result.store(thisKey + '_b', record)
   elsif record.is_a? String 
-    result.store(thisKey, record)
+    result.store(thisKey + '_s', record)
   elsif record.is_a? Numeric
     result.store(thisKey + '_n', record)
   else
