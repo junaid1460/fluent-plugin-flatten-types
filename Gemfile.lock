@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fluent-plugin-flatten-types (0.1.4)
+    fluent-plugin-flatten-types (0.1.5)
       fluentd (>= 0.14.10, < 2)
 
 GEM
