@@ -59,6 +59,10 @@ $ gem install fluent-plugin-flatten-types
 | boolean        | `"is_enabled": false` | `"is_enabled_b": false`         |
 | map            | `"object": {}`        | `"object": {}`                  |
 
+Additional feature.
+
+setting `__str__` to `true` in any map will stringify the map
+
 ## Copyright
 
 - Copyright(c) 2020- junaid junaid1460@gmail.com
