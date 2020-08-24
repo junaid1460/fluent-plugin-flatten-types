@@ -40,12 +40,11 @@ $ gem install fluent-plugin-flatten-types
 #### Output
 
 ```json
-
 {
   "name_s": "junaid",
   "type_n": 20,
-  "values_a": [{"v_n": 1}, {"v_n": "2323" }, {"v": { "name": "randy" }}],
-  "random_json_s": "{\\"__str__\\":true,\\"response\\":{\\"code\\":\\"AX12312\\",\\"message\\":\\"Cannot parse\\"}}"
+  "values_a": [{ "v_n": 1 }, { "v_n": "2323" }, { "v": { "name": "randy" } }],
+  "random_json_s": "{\"__str__\":true,\"response\":{\"code\":\"AX12312\",\"message\":\"Cannot parse\"}}"
 }
 ```
 
